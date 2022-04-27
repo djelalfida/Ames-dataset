@@ -15,16 +15,12 @@ import plotly.express as px
 data = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
 
-# Replace empty string or NA with np.nan
-# df = df.replace(['NA', ''], np.nan)
 
 def clean_data(df):
   # Dropping the columns with more than 1179 null values
   df.drop(['PoolQC', 'Fence', 'Alley', 'MiscFeature', 'Electrical'], axis=1, inplace=True)
-  # Drop Id because we don't need it
-  # df.drop('Id', axis=1, inplace=True)
 
-
+  # Replace string NA with np.nan
   df.replace('NA', np.nan, inplace=True)
 
 
@@ -55,7 +51,7 @@ def clean_data(df):
 
 
   # Categorical features with missing data
-  categorical_features = ['MasVnrType', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2', 'FireplaceQu', 'GarageType', 'GarageFinish', 'GarageQual', 'GarageCond', 'MSZoning']
+  categorical_features = ['MasVnrType', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2', 'FireplaceQu', 'GarageType', 'GarageFinish', 'GarageQual',   'GarageCond', 'MSZoning']
 
   # Instantiate most_frequent imputer
   imputer_freq = SimpleImputer(missing_values=np.nan, strategy='most_frequent')
